@@ -13,27 +13,22 @@ body {
     margin: 0;
 }
 
-/* 🔥 Ads */
-.ad-box {
-    margin: 20px auto;
-    max-width: 900px;
-    text-align: center;
-    padding: 10px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 10px;
-}
-
 .container {
     max-width: 900px;
-    margin: 20px auto;
+    margin: 30px auto;
     padding: 30px;
     border-radius: 20px;
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(15px);
 }
 
-h1 {
+h1, h2, h3 {
     text-align: center;
+}
+
+p {
+    color: #cbd5f5;
+    line-height: 1.7;
 }
 
 .grid {
@@ -86,49 +81,74 @@ button:hover {
     color: #38bdf8;
     font-weight: bold;
 }
+
+/* 📚 เนื้อหา */
+.content-box {
+    margin-top: 40px;
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #94a3b8;
+}
 </style>
 </head>
 
 <body>
 
-
-
 <div class="container">
-    <h1>📏 แปลงหน่วยที่ดินไทย</h1>
+    <h1>📏 โปรแกรมแปลงหน่วยที่ดินไทย</h1>
+    <p style="text-align:center;">
+        คำนวณพื้นที่ ไร่ งาน ตารางวา และแปลงเป็นตารางเมตร ได้อย่างง่ายดาย
+    </p>
 
+    <!-- 🔢 Input -->
     <div class="grid">
         <div class="card">
             <label>ไร่</label>
-            <input type="number" id="rai">
+            <input type="number" id="rai" placeholder="เช่น 1.5">
         </div>
 
         <div class="card">
             <label>งาน</label>
-            <input type="number" id="ngan">
+            <input type="number" id="ngan" placeholder="เช่น 2">
         </div>
 
         <div class="card">
             <label>ตารางวา</label>
-            <input type="number" id="wah">
+            <input type="number" id="wah" placeholder="เช่น 50">
         </div>
     </div>
 
     <button onclick="calculate()">คำนวณพื้นที่</button>
 
+    <!-- 🔥 Result -->
     <div class="result">
-        <div>ผลลัพธ์</div>
+        <div>ผลลัพธ์รวม</div>
         <div class="highlight" id="result">-</div>
     </div>
-</div>
 
-
-
-<!-- 🔥 บทความ -->
+    <!-- 📚 บทความ -->
     <div class="content-box">
         <h2>📚 หน่วยวัดที่ดินในประเทศไทย</h2>
+
         <p>
-            ในประเทศไทย การวัดพื้นที่ที่ดินนิยมใช้หน่วย ไร่ งาน และตารางวา 
-            ซึ่งเป็นหน่วยดั้งเดิมที่ใช้กันมานาน โดยเฉพาะในงานซื้อขายที่ดินและก่อสร้างบ้าน
+            หน่วยวัดที่ดินในประเทศไทยนิยมใช้ ไร่ งาน และตารางวา 
+            ซึ่งเป็นหน่วยมาตรฐานที่ใช้ในงานซื้อขายที่ดิน การก่อสร้างบ้าน 
+            และการวางแผนพื้นที่ต่าง ๆ
         </p>
 
         <h3>📏 การเทียบหน่วย</h3>
@@ -142,23 +162,30 @@ button:hover {
 
         <h3>🧠 สูตรจำง่าย</h3>
         <p>
-            👉 จำสั้น ๆ: "1 ไร่ = 400 ตร.วา"  
-            👉 และ "1 ตร.วา = 4 ตร.ม."  
-            เท่านี้ก็สามารถคำนวณต่อได้ทั้งหมด
+            จำหลักสำคัญแค่ 2 อย่าง:<br>
+            👉 1 ไร่ = 400 ตารางวา<br>
+            👉 1 ตารางวา = 4 ตารางเมตร<br>
+            จากนั้นสามารถคำนวณหน่วยอื่นต่อได้ทันที
         </p>
 
-        <h3>🏡 ใช้ทำอะไรได้บ้าง</h3>
+        <h3>🏡 ประโยชน์ของการคำนวณพื้นที่</h3>
         <ul>
-            <li>คำนวณพื้นที่สร้างบ้าน</li>
+            <li>วางแผนสร้างบ้าน</li>
             <li>ประเมินราคาที่ดิน</li>
-            <li>วางแผนซื้อขายอสังหาริมทรัพย์</li>
+            <li>คำนวณงบประมาณก่อสร้าง</li>
+            <li>ใช้ในการซื้อขายอสังหาริมทรัพย์</li>
         </ul>
 
         <p>
-            เครื่องมือนี้ออกแบบมาเพื่อช่วยให้คุณคำนวณได้ง่ายขึ้น 
-            เหมาะสำหรับเจ้าของบ้าน นักลงทุน และผู้ที่กำลังวางแผนปลูกบ้าน
+            เครื่องมือนี้เหมาะสำหรับเจ้าของบ้าน นักลงทุน และผู้ที่กำลังวางแผนสร้างบ้าน 
+            ช่วยให้คุณคำนวณพื้นที่ได้อย่างรวดเร็วและแม่นยำ
         </p>
     </div>
+
+    <footer>
+        © iHome108.com
+    </footer>
+</div>
 
 <script>
 function calculate() {
