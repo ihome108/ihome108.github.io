@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>โปรแกรมประเมินค่าก่อสร้าง | iHome108</title>
+
+<style>
+    body {
+        font-family: "Tahoma", sans-serif;
+        background: #f4f6f9;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    .wrapper {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .header {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .header h1 {
+        margin: 0;
+        color: #2c3e50;
+    }
+
+    .header p {
+        margin: 10px 0;
+        color: #555;
+    }
+
+    .highlight {
+        background: #e8f5e9;
+        padding: 10px;
+        border-left: 5px solid #4CAF50;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .container {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        text-align: center;
+    }
+
+    select, input {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background: #45a049;
+    }
+
+    #costResult {
+        font-size: 22px;
+        font-weight: bold;
+        color: #e53935;
+        margin-top: 15px;
+    }
+
+    .footer {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        color: #444;
+    }
+
+    .footer h3 {
+        margin-top: 0;
+        color: #2c3e50;
+    }
+
+    .note {
+        color: #777;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- ส่วนหัว -->
+    <div class="header">
+        <h1>โปรแกรม ประเมินราคาค่าก่อสร้าง by iHome108.com</h1>
+
+        <p>
+            โปรแกรมนี้ออกแบบมาเพื่อใช้คำนวณงบสำหรับก่อสร้างบ้านแบบคร่าวๆ 
+            โดยคำนวณจากพื้นที่ใช้สอย/ตารางเมตร
+        </p>
+
+        <div class="highlight">
+            <strong>วิธีใช้งาน :</strong><br>
+            (1) เลือกรูปแบบบ้านที่ต้องการคำนวณ <br>
+            (2) ระบุจำนวนพื้นที่ใช้สอย (ตารางเมตร) <br><br>
+            เมื่อกรอกข้อมูลครบแล้ว ก็กด “คำนวณ” ได้เลย
+        </div>
+    </div>
+
+    <!-- ตัวคำนวณ -->
+    <div class="container">
+
+        <h2>เลือกประเภทของบ้าน</h2>
+
+        <select id="houseType">
+            <option value="WH1">บ้านไม้ชั้นเดียว</option>
+            <option value="WH2">บ้านไม้ 2 ชั้น</option>
+            <option value="WC">บ้านครึ่งตึกครึ่งไม้</option>
+            <option value="C1">บ้านเดี่ยว (คอนกรีต) ชั้นเดียว</option>
+            <option value="C2">บ้านเดี่ยว (คอนกรีต) 2-3 ชั้น</option>
+            <option value="CT1">ทาวน์เฮาส์ 2 ชั้น กว้าง 4 เมตร</option>
+            <option value="KD1">บ้านน็อคดาวน์ บ้านสำเร็จรูป</option>
+            <option value="RThai">อาคารไม้เรือนไทย</option>
+            <option value="FD">ลานคอนกรีต</option>
+            <option value="RD">ถนนลาดยาง</option>
+            <option value="CP">หลังคาคลุมรถ</option>
+            <option value="FC">รั้วอิฐบล็อก</option>
+        </select>
+
+        <br>
+
+        <input type="number" id="area" placeholder="กรอกพื้นที่ เช่น 100">
+
+        <br>
+
+        <button onclick="calculateCost()">คำนวณราคา</button>
+
+        <p id="costResult">฿฿฿,฿฿฿</p>
+    </div>
+
+    <!-- ส่วนท้าย -->
+    <div class="footer">
+        <h3>วิธีหาพื้นที่ใช้สอยเบื้องต้น</h3>
+
+        <p>
+            ขนาดพื้นที่ใช้สอย = ความกว้าง × ความยาว (ความลึก)
+        </p>
+
+        <p>
+            ตัวอย่าง ตัวบ้านหน้ากว้าง 5.5 เมตร ลึก 15 เมตร <br>
+            พื้นที่ใช้สอย = 5.5 × 15 = <strong>82.5 ตารางเมตร</strong>
+        </p>
+
+        <p>
+            ปล. พื้นที่ใช้สอยวัดจากขนาดของบ้าน ไม่ใช่ขนาดของที่ดิน <br>
+            บ้านหลายชั้น ต้องคิดแยกเป็นแต่ละชั้นให้ครบ
+        </p>
+
+        <p class="note">
+            ราคาดังกล่าวเป็นราคาวัสดุเกรดทั่วไป หากใช้วัสดุเกรดสูง 
+            งบจะเพิ่มประมาณ 30–50%
+        </p>
+
+        <p class="note">
+            ราคาค่าก่อสร้างอ้างอิงจาก : มูลนิธิประเมินค่า-นายหน้าแห่งประเทศไทย
+        </p>
+
+        <p class="note">
+            อัพเดต 6/10/2566
+        </p>
+    </div>
+
+</div>
+
+<script>
+function calculateCost() {
+    const costPerSquareMeter = {
+        WH1: 12800,
+        WH2: 12200,
+        WC: 11400,
+        C1: 14000,
+        C2: 13200,
+        CT1: 10000,
+        KD1: 13200,
+        RThai: 38000,
+        FD: 600,
+        RD: 500,
+        CP: 1600,
+        FC: 1300
+    };
+
+    const houseType = document.getElementById('houseType').value;
+    const area = parseFloat(document.getElementById('area').value);
+
+    if (!area || area <= 0) {
+        alert("กรุณากรอกพื้นที่ให้ถูกต้อง");
+        return;
+    }
+
+    const cost = area * costPerSquareMeter[houseType];
+
+    document.getElementById('costResult').innerText =
+        "ค่าก่อสร้างโดยประมาณ : " + cost.toLocaleString('th-TH') + " บาท";
+}
+</script>
+
+</body>
+</html>
