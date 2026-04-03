@@ -143,12 +143,19 @@ body{
 
 <script>
 function enterSite(){
+    // open immediately to avoid popup block
+    const newTab = window.open('https://www.ihome108.com', '_blank');
+
+    // animation after click
     const box = document.querySelector('.glass');
     box.style.transform = 'scale(1.1)';
     box.style.opacity = '0';
-    setTimeout(()=>{
-        window.open('https://www.ihome108.com', '_blank');
-    },500);
+
+    // fallback if blocked
+    if(!newTab){
+        alert('กรุณาอนุญาต Pop-up เพื่อเปิดเว็บไซต์');
+    }
+},500);
 },500);
 }
 </script>
