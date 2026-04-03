@@ -41,6 +41,11 @@ body{
     transition:0.5s;
 }
 
+.glass.active{
+    transform:scale(1.1);
+    opacity:0;
+}
+
 .glass:hover{
     transform:scale(1.03);
     box-shadow: 0 15px 50px rgba(0,0,0,0.5);
@@ -84,6 +89,7 @@ body{
 }
 
 .btn{
+    display:inline-block;
     margin-top:40px;
     padding:12px 30px;
     border:1px solid rgba(255,255,255,0.3);
@@ -94,6 +100,7 @@ body{
     transition:0.4s;
     letter-spacing:2px;
     border-radius:10px;
+    text-decoration:none;
 }
 
 .btn:hover{
@@ -134,29 +141,16 @@ body{
 <div class="orb orb2"></div>
 
 <div class="container">
-    <div class="glass">
+    <div class="glass" id="glassBox">
         <div class="title">iHome108</div>
         <div class="subtitle">IDEAS FOR YOUR PERFECT HOME</div>
-        <button class="btn" onclick="enterSite()">ENTER</button>
+        <a href="https://www.ihome108.com" target="_blank" class="btn" onclick="animateBox()">ENTER</a>
     </div>
 </div>
 
 <script>
-function enterSite(){
-    // open immediately to avoid popup block
-    const newTab = window.open('https://www.ihome108.com', '_blank');
-
-    // animation after click
-    const box = document.querySelector('.glass');
-    box.style.transform = 'scale(1.1)';
-    box.style.opacity = '0';
-
-    // fallback if blocked
-    if(!newTab){
-        alert('กรุณาอนุญาต Pop-up เพื่อเปิดเว็บไซต์');
-    }
-},500);
-},500);
+function animateBox(){
+    document.getElementById('glassBox').classList.add('active');
 }
 </script>
 
