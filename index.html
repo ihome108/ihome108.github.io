@@ -14,24 +14,9 @@
 }
 
 body{
-    background:#0f172a;
+    background: linear-gradient(135deg, #020617, #0f172a);
     color:white;
     overflow:hidden;
-}
-
-/* Background Gradient Animation */
-body::before{
-    content:"";
-    position:absolute;
-    width:200%;
-    height:200%;
-    background: radial-gradient(circle at center, #1e293b, #020617);
-    animation: moveBg 10s infinite alternate;
-}
-
-@keyframes moveBg{
-    0%{ transform:translate(-10%, -10%);} 
-    100%{ transform:translate(10%, 10%);} 
 }
 
 .container{
@@ -42,6 +27,23 @@ body::before{
     justify-content:center;
     align-items:center;
     text-align:center;
+}
+
+/* Glass Effect Box */
+.glass{
+    padding:60px 80px;
+    border-radius:20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transition:0.5s;
+}
+
+.glass:hover{
+    transform:scale(1.03);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.5);
 }
 
 .title{
@@ -77,36 +79,21 @@ body::before{
 .subtitle{
     margin-top:20px;
     font-size:18px;
-    color:#94a3b8;
+    color:#cbd5f5;
     letter-spacing:2px;
-}
-
-/* Floating dots */
-.dot{
-    position:absolute;
-    width:5px;
-    height:5px;
-    background:white;
-    border-radius:50%;
-    opacity:0.2;
-    animation: float 6s infinite ease-in-out;
-}
-
-@keyframes float{
-    0%{ transform:translateY(0px);} 
-    50%{ transform:translateY(-20px);} 
-    100%{ transform:translateY(0px);} 
 }
 
 .btn{
     margin-top:40px;
     padding:12px 30px;
-    border:1px solid white;
-    background:transparent;
+    border:1px solid rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
     color:white;
     cursor:pointer;
     transition:0.4s;
     letter-spacing:2px;
+    border-radius:10px;
 }
 
 .btn:hover{
@@ -114,13 +101,40 @@ body::before{
     color:#0f172a;
 }
 
+/* Floating light orbs */
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter: blur(60px);
+    opacity:0.4;
+}
+
+.orb1{
+    width:200px;
+    height:200px;
+    background:#38bdf8;
+    top:10%;
+    left:20%;
+}
+
+.orb2{
+    width:250px;
+    height:250px;
+    background:#6366f1;
+    bottom:10%;
+    right:20%;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
 <div class="container">
-    <div>
+    <div class="glass">
         <div class="title">iHome108</div>
         <div class="subtitle">IDEAS FOR YOUR PERFECT HOME</div>
         <button class="btn" onclick="enterSite()">ENTER</button>
@@ -128,25 +142,14 @@ body::before{
 </div>
 
 <script>
-// Create floating dots
-for(let i=0;i<30;i++){
-    let dot = document.createElement('div');
-    dot.classList.add('dot');
-
-    dot.style.top = Math.random()*100 + '%';
-    dot.style.left = Math.random()*100 + '%';
-    dot.style.animationDuration = (Math.random()*5+3)+'s';
-
-    document.body.appendChild(dot);
-}
-
-// Button action
 function enterSite(){
-    document.querySelector('.title').style.transform = 'scale(1.2)';
-    document.querySelector('.title').style.opacity = '0';
+    const box = document.querySelector('.glass');
+    box.style.transform = 'scale(1.1)';
+    box.style.opacity = '0';
     setTimeout(()=>{
-        alert('Welcome to iHome108');
+        window.open('https://www.ihome108.com', '_blank');
     },500);
+},500);
 }
 </script>
 
